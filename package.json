@@ -4,7 +4,7 @@
   "description": "spawn which returns a process with a promise property, fulfilled with { stdout, stderr } as strings ",
   "main": "src/index",
   "scripts": {
-    "test": "zoroaster test"
+    "test": "zoroaster test/spec"
   },
   "repository": {
     "type": "git",
