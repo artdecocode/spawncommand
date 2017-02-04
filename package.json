@@ -1,0 +1,26 @@
+{
+  "name": "spawncommand",
+  "version": "1.0.0",
+  "description": "spawn which returns a process with a promise property, fulfilled with { stdout, stderr } as strings ",
+  "main": "src/index",
+  "scripts": {
+    "test": "zoroaster test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sobesednik/spawnCommand.git"
+  },
+  "keywords": [
+    "spawn",
+    "child_process",
+    "promise",
+    "stdout",
+    "stderr"
+  ],
+  "author": "anton <anton@sobes.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sobesednik/spawnCommand/issues"
+  },
+  "homepage": "https://github.com/Sobesednik/spawnCommand#readme"
+}
