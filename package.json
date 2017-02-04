@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "spawn which returns a process with a promise property, fulfilled with { stdout, stderr } as strings ",
   "main": "src/index",
+  "files": [
+    "src/"
+  ],
   "scripts": {
     "test": "zoroaster test/spec"
   },
