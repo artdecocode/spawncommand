@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/Sobesednik/spawncommand#readme",
   "devDependencies": {
-    "zoroaster": "^0.2.0"
+    "zoroaster": "^0.3.0"
   }
 }
