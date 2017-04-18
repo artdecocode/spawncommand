@@ -1,6 +1,7 @@
-const spawnCommand = require('../../src/index')
 const path = require('path')
 const assert = require('assert')
+
+const spawnCommand = require('../../src/index')
 const fixtures = path.join(__dirname, '../fixtures')
 const nodeJsFile = path.join(fixtures, 'node.js')
 const exit0JsFile = path.join(fixtures, 'exit-0.js')
@@ -9,41 +10,29 @@ const ipcJsFile = path.join(fixtures, 'message.js')
 const errorJsFile = path.join(fixtures, 'error.js')
 const messages = require('../fixtures/message')
 
-// const errorText = `(function (exports, require, module, __filename, __dirname) { throw new Error('Expected error')
-//                                                               ^
-
-// Error: Expected error
-//     at Object.<anonymous> (/Users/zavr/Work/spawnCommand/test/fixtures/error.js:1:69)
-//     at Module._compile (module.js:571:32)
-//     at Object.Module._extensions..js (module.js:580:10)
-//     at Module.load (module.js:488:32)
-//     at tryModuleLoad (module.js:447:12)
-//     at Function.Module._load (module.js:439:3)
-//     at Module.runMain (module.js:605:10)
-//     at run (bootstrap_node.js:420:7)
-//     at startup (bootstrap_node.js:139:9)
-//     at bootstrap_node.js:535:3`
+const expectedStdout = 'expected stdout\n';
+const expectedStderr = 'expected stderr\n';
 
 module.exports = {
     spawnCommand: () =>
         spawnCommand('node', [nodeJsFile])
             .promise
             .then((res) => {
-                assert(typeof res === 'object', 'Promise should resove with an object')
+                assert(typeof res === 'object', 'Promise should resolve with an object')
                 assert('stdout' in res, 'should have stdout property')
                 assert('stderr' in res, 'should have stderr property')
                 assert(typeof res.stdout === 'string', 'stdout should be a string')
                 assert(typeof res.stderr === 'string', 'stderr should be a string')
-                assert(res.stdout === 'expected stdout', 'stdout should equal expected')
-                assert(res.stderr === 'expected stderr', 'stderr should equal expected')
+                assert(res.stdout === expectedStdout, 'stdout should equal expected')
+                assert(res.stderr === expectedStderr, 'stderr should equal expected')
             }),
     spawnExit0Command: () => {
         const exit0 = spawnCommand('node', [exit0JsFile])
         return exit0
             .promise
             .then((res) => {
-                assert(res.stdout === 'expected stdout')
-                assert(res.stderr === 'expected stderr')
+                assert(res.stdout === expectedStdout)
+                assert(res.stderr === expectedStderr)
                 assert(res.code === 0, `Expected exit code ${res.code} to equal 0`)
             })
     },
@@ -52,8 +41,8 @@ module.exports = {
         return exit1
             .promise
             .then((res) => {
-                assert(res.stdout === 'expected stdout')
-                assert(res.stderr === 'expected stderr')
+                assert(res.stdout === expectedStdout)
+                assert(res.stderr === expectedStderr)
                 assert(res.code === 1, `Expected exit code ${res.code} to equal 1`)
             })
     },
@@ -116,8 +105,8 @@ module.exports = {
     },
     // should not throw an error when spawned without channels
     spawnError: () => {
-        const error = spawnCommand('node', [errorJsFile])
-        return error
+        const errorProc = spawnCommand('node', [errorJsFile])
+        return errorProc
             .promise
             .then((res) => {
                 assert(res.stdout === '')
@@ -125,7 +114,17 @@ module.exports = {
                 assert(res.code === 1, `Expected exit code ${res.code} to equal 1`)
             })
     },
+    errorSpawn: () => {
+        const errorProc = spawnCommand('none-existent-bin', ['non-existent-file'])
+        return errorProc
+            .promise
+            .then(() => {
+                throw new Error('The promise should have been rejected')
+            })
+            .catch((err) => {
+                assert(/ENOENT/.test(err.message))
+            })
+    }
 }
 
-// thanks for watching
 // sobesednik.media 2017
