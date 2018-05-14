@@ -1,54 +1,45 @@
-# spawncommand
+# spawnCommand
 
-extend `require('child_process').spawn` to set `.promise` property
-on the returned object. The promise will be fulfilled on process
-exit with a hash of `code`, `stdout` and `stderr`, where `code`
-is the exit code, `stdout` is all data the process wrote to
-_stdout_, and `stderr` is all data the process wrote to _stderr_.
-The promise will be rejected if `process.on('error')` fired.
+[![npm version](https://badge.fury.io/js/spawncommand.svg)](https://badge.fury.io/js/spawncommand)
 
 ```
 yarn add -E spawncommand
 ```
 
+This package is a wrapper around `child_process.spawn` methods to set `.promise` property on the returned `ChildProcess` instanced. The promise will be fulfilled on process exit with an object consisting of `code`, `stdout` and `stderr` properties, where:
+
+- `code` is the exit code;
+- `stdout` is all data the process wrote to _stdout_
+- `stderr` is all data the process wrote to _stderr_
+
+The promise will be rejected if an error was encountered when trying to spawn the process.
+
 ```js
-const spawnCommand = require('spawncommand')
+/* yarn example/spawncommand.js */
+import spawnCommand from 'spawncommand'
 
-const echo = spawnCommand('echo', ['hello world'])
-echo
-    .promise
-    .then((res) => {
-        console.error(res)
-    })
-    // { code: 0, stdout: 'hello world', stderr: '' }
-    // echo is instance of ChildProcess)
+(async () => {
+  const { promise } = spawnCommand('echo', ['hello world'])
+  const { stderr, stdout, code } =  await promise
+
+  console.log(stderr) // undefined
+  console.log(stdout) // hello world\n
+  console.log(code) // 0
+})()
 ```
 
-## Testing
+Because the returned object is a `ChildProcess`, all its properties can be accessed.
 
-[zoroaster](https://www.npmjs.com/package/zoroaster)
+```js
+/* yarn example/pipe.js */
+import spawnCommand from 'spawncommand'
 
-```
-npm t
+(async () => {
+  const { stdout, promise } = spawnCommand('echo', ['hello world'])
 
-> spawncommand@1.0.0 test /Users/zavr/Work/spawnCommand
-> zoroaster test/spec
-
- test/spec
-   index.js
-    ✓  spawnCommand
-    ✓  spawnExit0Command
-    ✓  spawnExit1Command
-    ✓  spanwWithNoChannels
-    ✓  spawnError
-     message
-      ✓  stdout
-      ✓  stderr
-      ✓  exit0
-      ✓  exit1
-
-Executed 9 tests.
-
+  stdout.pipe(process.stdout)
+  await promise
+})()
 ```
 
 ---

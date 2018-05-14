@@ -3,7 +3,7 @@ const EXIT1_STRING = 'exit1'
 const STDOUT_WRITE_STRING = 'write to stdout'
 const STDERR_WRITE_STRING = 'write to stderr'
 
-process.on('message', (m, arg) => {
+process.on('message', (m) => {
   switch (m) {
   case EXIT0_STRING:
     process.exit(0)

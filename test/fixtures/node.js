@@ -1,2 +1,1 @@
-console.log('expected stdout')
-console.error('expected stderr')
+void 0

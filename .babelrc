@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "@babel/plugin-syntax-object-rest-spread",
+    "@babel/plugin-transform-modules-commonjs"
+  ],
+  "retainLines": false
+}
