@@ -1,4 +1,4 @@
-/* global spawn */
+import spawn from '../../src'
 import { ok } from 'assert'
 import { deepEqual, equal, throws } from 'zoroaster/assert'
 import context from '../context'

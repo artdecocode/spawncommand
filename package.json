@@ -10,7 +10,7 @@
     "t": "zoroaster --babel",
     "build": "babel src --out-dir build",
     "test": "zoroaster test/spec --babel",
-    "test-build": "LIB_MAIN=../.. zoroaster test/spec --babel",
+    "test-build": "BABEL_ENV=test-build zoroaster test/spec --babel",
     "test-all": "yarn-s test test-build",
     "example/spawncommand.js": "node example example/spawncommand",
     "example/fork.js": "node example example/fork",
@@ -45,6 +45,7 @@
     "zoroaster": "1.1.0"
   },
   "dependencies": {
+    "babel-plugin-transform-rename-import": "2.2.0",
     "catchment": "2.0.1"
   }
 }

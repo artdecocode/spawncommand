@@ -1,4 +1,4 @@
-/* global fork */
+import { fork } from '../../src'
 import { deepEqual } from 'zoroaster/assert'
 import context from '../context'
 
