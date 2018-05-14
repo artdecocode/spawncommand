@@ -1,7 +1,7 @@
 {
   "name": "spawncommand",
   "version": "1.1.0",
-  "description": "spawn which returns a process with a promise property, fulfilled with { code, stdout, stderr }",
+  "description": "Spawn a child process with a promise property resolved on exit with stdout, stderr and code",
   "main": "build",
   "files": [
     "build"
@@ -24,7 +24,9 @@
     "child_process",
     "promise",
     "stdout",
-    "stderr"
+    "stderr",
+    "ChildProcess",
+    "stdio"
   ],
   "author": "anton <anton@adc.sh>",
   "license": "MIT",

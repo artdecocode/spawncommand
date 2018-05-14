@@ -8,7 +8,7 @@ yarn add -E spawncommand
 
 This package is a wrapper around `child_process.spawn` methods to set `.promise` property on the returned `ChildProcess` instanced. The promise will be fulfilled on process exit with an object consisting of `code`, `stdout` and `stderr` properties, where:
 
-- `code` is the exit code;
+- `code` is the exit code
 - `stdout` is all data the process wrote to _stdout_
 - `stderr` is all data the process wrote to _stderr_
 
