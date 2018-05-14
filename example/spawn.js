@@ -1,7 +1,7 @@
-import spawnCommand from '../src'
+import spawn from '../src'
 
 (async () => {
-  const { promise } = spawnCommand('echo', ['hello world'])
+  const { promise } = spawn('echo', ['hello world'])
   const { stderr, stdout, code } =  await promise
   console.log(stderr) // undefined
   console.log(stdout) // hello world\n

@@ -42,8 +42,31 @@ import spawnCommand from 'spawncommand'
 })()
 ```
 
+## fork
+
+It is also possible to fork a Node.js process and execute a module in it.
+
+```js
+/* yarn example/fork.js */
+import { resolve } from 'path'
+import { fork } from 'spawncommand'
+
+const MODULE_PATH = resolve(__dirname, 'example/spawn.js')
+
+;(async () => {
+  const { promise } = fork('example/spawn.js', [], {
+    stdio: 'pipe',
+  })
+  const { stdout } =  await promise
+  console.log(stdout) // same output as example/spawn.js
+})()
+```
+
+Make sure to pass `pipe` option to be able to gather stderr and stdout streams (or an array for versions of Node.js when [this does not work][2]).
+
 ---
 
 (c) [Art Deco Code][1] 2018
 
 [1]: https://artdeco.bz
+[2]: https://github.com/nodejs/node/pull/10866
