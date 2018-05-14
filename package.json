@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sobesednik/spawncommand.git"
+    "url": "git+https://github.com/artdecocode/spawncommand.git"
   },
   "keywords": [
     "spawn",
@@ -20,12 +20,12 @@
     "stdout",
     "stderr"
   ],
-  "author": "anton <anton@sobes.io>",
+  "author": "anton <anton@adc.sh>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Sobesednik/spawncommand/issues"
+    "url": "https://github.com/artdecocode/spawncommand/issues"
   },
-  "homepage": "https://github.com/Sobesednik/spawncommand#readme",
+  "homepage": "https://github.com/artdecocode/spawncommand#readme",
   "devDependencies": {
     "zoroaster": "^0.3.0"
   },

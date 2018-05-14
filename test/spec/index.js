@@ -127,4 +127,3 @@ module.exports = {
     }
 }
 
-// sobesednik.media 2017
