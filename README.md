@@ -70,8 +70,12 @@ import spawn from 'spawncommand'
   }, null, 2))
 })()
 ```
-```
-
+```json5
+{
+  "stderr": "",
+  "stdout": "hello world\n",
+  "code": 0
+}
 ```
 
 The returned object is a `ChildProcess` and all of its properties can be accessed in the standard way.
@@ -88,7 +92,7 @@ import spawnCommand from 'spawncommand'
 ```
 
 ```
-
+hello world
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="15"></a></p>
@@ -98,21 +102,22 @@ import spawnCommand from 'spawncommand'
 Forks a Node.js module and adds a `promise` property to the returned _ChildProcess_.
 
 ```../src=>spawncommand
-import { resolve } from 'path'
 import { fork } from '../src'
 
-const MODULE_PATH = resolve(__dirname, 'index.js')
-
-;(async () => {
-  const { promise } = fork(MODULE_PATH, ['example/spawn.js'], {
+(async () => {
+  const { promise } = fork('example/index.js', ['example/spawn.js'], {
     stdio: 'pipe',
   })
   const { stdout } =  await promise
-  console.log(stdout) // same output as example/spawn.js
+  console.log(stdout)
 })()
 ```
-```
-
+```json5
+{
+  "stderr": "",
+  "stdout": "hello world\n",
+  "code": 0
+}
 ```
 
 The `pipe` option needs to be set in order to gather the output of the `stderr` and `stdout` streams (or an array for older versions of Node.js when [this does not work][2]).

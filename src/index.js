@@ -1,5 +1,5 @@
 import Catchment from 'catchment'
-import { spawn, fork } from 'child_process'
+import { spawn, fork as forkCp } from 'child_process'
 
 const pipe = (stream, catchment) => {
   if (!stream) return catchment.end()
