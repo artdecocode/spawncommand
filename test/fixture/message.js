@@ -13,9 +13,11 @@ process.on('message', (m) => {
     break
   case STDOUT_WRITE_STRING:
     process.stdout.write(STDOUT_WRITE_STRING)
+    process.exit()
     break
   case STDERR_WRITE_STRING:
     process.stderr.write(STDERR_WRITE_STRING)
+    process.exit()
     break
   }
 })

@@ -1,6 +1,6 @@
-import spawn from '../../src'
 import { ok } from 'assert'
 import { deepEqual, equal, throws } from 'zoroaster/assert'
+import spawn from '../../src'
 import context from '../context'
 
 /** @type {Object.<string, (ctx: context)>} */
@@ -65,8 +65,6 @@ export const message = {
       stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
     })
     proc.send(STDOUT_WRITE_STRING)
-    await new Promise(resolve => setTimeout(resolve, 100))
-    proc.kill()
     const { stdout } = await proc.promise
     equal(stdout, STDOUT_WRITE_STRING)
   },
@@ -75,8 +73,6 @@ export const message = {
       stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
     })
     proc.send(STDERR_WRITE_STRING)
-    await new Promise(resolve => setTimeout(resolve, 100))
-    proc.kill()
     const { stderr } = await proc.promise
     equal(stderr, STDERR_WRITE_STRING)
   },
@@ -85,8 +81,6 @@ export const message = {
       stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
     })
     proc.send(EXIT1_STRING)
-    await new Promise(resolve => setTimeout(resolve, 100))
-    proc.kill()
     const { code } = await proc.promise
     equal(code, 1)
   },
@@ -95,8 +89,6 @@ export const message = {
       stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
     })
     proc.send(EXIT0_STRING)
-    await new Promise(resolve => setTimeout(resolve, 100))
-    proc.kill()
     const { code } = await proc.promise
     equal(code, 0)
   },
