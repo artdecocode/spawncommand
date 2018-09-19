@@ -1,17 +1,16 @@
 {
   "name": "spawncommand",
   "version": "2.0.0",
-  "description": "Spawn a child process with a promise property resolved on exit with stdout, stderr and code",
+  "description": "Spawn or fork a child process with a promise property resolved on exit with stdout, stderr and code.",
   "main": "build",
   "files": [
     "build"
   ],
   "scripts": {
-    "t": "zoroaster --babel",
-    "build": "babel src --out-dir build",
-    "test": "zoroaster test/spec --babel",
-    "test-build": "BABEL_ENV=test-build zoroaster test/spec --babel",
-    "test-all": "yarn-s test test-build",
+    "t": "zoroaster -a",
+    "test": "yarn t test/spec",
+    "build": "alamode src -o build",
+    "test-build": "ALAMODE_ENV=test-build yarn test",
     "example/spawncommand.js": "node example example/spawncommand",
     "example/fork.js": "node example example/fork",
     "example/pipe.js": "node example example/pipe"
@@ -22,11 +21,14 @@
   },
   "keywords": [
     "spawn",
+    "fork",
+    "async",
     "child_process",
+    "child process",
+    "ChildProcess",
     "promise",
     "stdout",
     "stderr",
-    "ChildProcess",
     "stdio"
   ],
   "author": "anton <anton@adc.sh>",
@@ -36,16 +38,12 @@
   },
   "homepage": "https://github.com/artdecocode/spawncommand#readme",
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.46",
-    "@babel/core": "7.0.0-beta.46",
-    "@babel/plugin-syntax-object-rest-spread": "7.0.0-beta.46",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.46",
-    "@babel/register": "7.0.0-beta.46",
+    "alamode": "1.5.0",
+    "documentary": "1.17.0",
     "yarn-s": "1.1.0",
-    "zoroaster": "1.1.0"
+    "zoroaster": "3.4.1"
   },
   "dependencies": {
-    "babel-plugin-transform-rename-import": "2.2.0",
-    "catchment": "2.0.1"
+    "catchment": "3.1.1"
   }
 }

@@ -1,5 +1,5 @@
 import Catchment from 'catchment'
-import { spawn, fork as forkCp, SpawnOptions, ForkOptions } from 'child_process' // eslint-disable-line
+import { spawn, fork } from 'child_process'
 
 const pipe = (stream, catchment) => {
   if (!stream) return catchment.end()
@@ -63,3 +63,5 @@ export function fork(mod, args = [], options) {
   proc.spawnCommand = proc.spawnargs.join(' ')
   return proc
 }
+
+/* documentary types/index.xml */
