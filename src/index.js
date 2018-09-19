@@ -38,7 +38,7 @@ class ChildProcessWithPromise extends ChildProcess {
 }
 
 /**
- * Spawns a new process using the `command` and returns an instance of a ChildProcess, extended to have a `promise` property which is resolved when the process exits. The resolved value is an object with stdout, stderr and code properties.
+ * Spawns a new process using the `command` and returns an instance of a ChildProcess, extended to have a `promise` property which is resolved when the process exits. The resolved value is an object with `stdout`, `stderr` and `code` properties.
  * @param {string} command The command to run.
  * @param {string[]} [args] List of string arguments.
  * @param {SpawnOptions} [options] Options used to spawn.
@@ -53,7 +53,7 @@ export default function spawnCommand(command, args = [], options = {}) {
 }
 
 /**
- * Fork a process and assign a `promise` property to it, resolved on exit.
+ * Forks a process and assign a `promise` property to it, resolved with `stderr`, `stdout` and `code` properties on exit.
  * @param {string} mod The module to run in the child.
  * @param {string[]} [args] List of string arguments.
  * @param {ForkOptions} [options] Options to fork the process with.
@@ -72,6 +72,9 @@ export function fork(mod, args = [], options) {
  * @typedef {import('child_process').SpawnOptions} SpawnOptions
  * @typedef {import('child_process').ForkOptions} ForkOptions
  * @typedef {import('child_process').ChildProcess} ChildProcess
+ *
+ * @typedef {ChildProcess} ChildProcessWithPromise A child process with an extra `promise` property.
+ * @prop {Promise.<PromiseResult>} promise A promise resolved when the process exits.
  *
  * @typedef {Object} PromiseResult
  * @prop {string} stdout The accumulated result of the `stdout` stream.

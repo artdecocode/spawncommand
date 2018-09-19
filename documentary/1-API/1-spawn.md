@@ -1,8 +1,10 @@
 ### Types
 
-The package has a number of types.
+The package's main type is _ChildProcessWithPromise_ which enriches the standard _ChildProcess_ with a `promise` property.
 
 %TYPEDEF types/index.xml%
+
+%TYPEDEF types/cp.xml%
 
 %~ width="15"%
 

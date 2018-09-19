@@ -35,7 +35,7 @@ import spawn, { fork } from 'spawncommand'
 
 ### Types
 
-The package has a number of types.
+The package's main type is _ChildProcessWithPromise_ which enriches the standard _ChildProcess_ with a `promise` property.
 
 `import('child_process').SpawnOptions` __<a name="spawnoptions">`SpawnOptions`</a>__
 
@@ -53,9 +53,9 @@ __<a name="promiseresult">`PromiseResult`</a>__
 
 `ChildProcess` __<a name="childprocesswithpromise">`ChildProcessWithPromise`</a>__: A child process with an extra `promise` property.
 
-|     Name     |           Type            |                Description                 | Default |
-| ------------ | ------------------------- | ------------------------------------------ | ------- |
-| __promise*__ | _Promise.<PromiseResult>_ | A promise resolved when the process exits. | -       |
+|     Name     |                       Type                        |                Description                 | Default |
+| ------------ | ------------------------------------------------- | ------------------------------------------ | ------- |
+| __promise*__ | _Promise.&lt;[PromiseResult](#promiseresult)&gt;_ | A promise resolved when the process exits. | -       |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
 
