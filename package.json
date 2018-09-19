@@ -10,6 +10,8 @@
     "t": "zoroaster -a",
     "test": "yarn t test/spec",
     "build": "alamode src -o build",
+    "d": "alamode src/index.js -g",
+    "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "example/spawncommand.js": "node example example/spawncommand",
     "example/fork.js": "node example example/fork",

@@ -1,4 +1,19 @@
 <types>
   <import name="SpawnOptions" from="child_process" />
   <import name="ForkOptions" from="child_process" />
+  <import name="ChildProcess" from="child_process" />
+  <type name="PromiseResult">
+    <prop string name="stdout">
+      The accumulated result of the `stdout` stream.
+    </prop>
+    <prop string name="stderr">
+      The accumulated result of the `stderr` stream.
+    </prop>
+    <prop number name="stderr">
+      The code with which the process exited.
+    </prop>
+  </type>
+  <type name="ChildProcessWithPromise" type="ChildProcess" desc="A child process with an extra `promise` property resolved on exit.">
+    <prop name="promise" type="Promise.<PromiseResult>">
+  </type>
 </types>
