@@ -2,11 +2,13 @@
 [
   ["module", "string"],
   ["args", "string[]"],
-  ["options?", "SpawnOptions"]
+  ["options?", "ForkOptions"]
 ]
 ```
 
 Forks a Node.js module and adds a `promise` property to the returned _ChildProcess_.
+
+%TYPEDEF types/index.xml ForkOptions%
 
 %EXAMPLE: example/fork.js, ../src => spawncommand%
 %FORK-json5 example example/fork.js%

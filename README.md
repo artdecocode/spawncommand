@@ -15,10 +15,10 @@ yarn add -E spawncommand
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
   * [Types](#types)
-    * [`PromiseResult`](#promiseresult)
     * [`ChildProcessWithPromise`](#childprocesswithpromise)
-  * [`spawn(module: string, args: string[], options?: ForkOptions): ChildProcessWithPromise`](#spawnmodule-stringargs-stringoptions-forkoptions-childprocesswithpromise)
-  * [`fork(module: string, args: string[], options?: SpawnOptions): ChildProcessWithPromise`](#forkmodule-stringargs-stringoptions-spawnoptions-childprocesswithpromise)
+    * [`PromiseResult`](#promiseresult)
+  * [`spawn(module: string, args: string[], options?: SpawnOptions): ChildProcessWithPromise`](#spawnmodule-stringargs-stringoptions-spawnoptions-childprocesswithpromise)
+  * [`fork(module: string, args: string[], options?: ForkOptions): ChildProcessWithPromise`](#forkmodule-stringargs-stringoptions-forkoptions-childprocesswithpromise)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
@@ -37,11 +37,13 @@ import spawn, { fork } from 'spawncommand'
 
 The package's main type is _ChildProcessWithPromise_ which enriches the standard _ChildProcess_ with a `promise` property.
 
-`import('child_process').SpawnOptions` __<a name="spawnoptions">`SpawnOptions`</a>__
-
-`import('child_process').ForkOptions` __<a name="forkoptions">`ForkOptions`</a>__
-
 `import('child_process').ChildProcess` __<a name="childprocess">`ChildProcess`</a>__
+
+`ChildProcess` __<a name="childprocesswithpromise">`ChildProcessWithPromise`</a>__: A child process with an extra `promise` property.
+
+|     Name     |                       Type                        |                Description                 | Default |
+| ------------ | ------------------------------------------------- | ------------------------------------------ | ------- |
+| __promise*__ | _Promise.&lt;[PromiseResult](#promiseresult)&gt;_ | A promise resolved when the process exits. | -       |
 
 __<a name="promiseresult">`PromiseResult`</a>__
 
@@ -51,17 +53,13 @@ __<a name="promiseresult">`PromiseResult`</a>__
 | __stderr*__ | _string_ | The accumulated result of the `stderr` stream. | -       |
 | __code*__   | _number_ | The code with which the process exited.        | -       |
 
-`ChildProcess` __<a name="childprocesswithpromise">`ChildProcessWithPromise`</a>__: A child process with an extra `promise` property.
-
-|     Name     |                       Type                        |                Description                 | Default |
-| ------------ | ------------------------------------------------- | ------------------------------------------ | ------- |
-| __promise*__ | _Promise.&lt;[PromiseResult](#promiseresult)&gt;_ | A promise resolved when the process exits. | -       |
-
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
 
-### `spawn(`<br/>&nbsp;&nbsp;`module: string,`<br/>&nbsp;&nbsp;`args: string[],`<br/>&nbsp;&nbsp;`options?: ForkOptions,`<br/>`): ChildProcessWithPromise`
+### `spawn(`<br/>&nbsp;&nbsp;`module: string,`<br/>&nbsp;&nbsp;`args: string[],`<br/>&nbsp;&nbsp;`options?: SpawnOptions,`<br/>`): ChildProcessWithPromise`
 
 Spawns a command and returns a _ChildProcess_ instance with the `promise` property resolved on exit. The promise will be rejected if an error was encountered when trying to spawn the process.
+
+`import('child_process').SpawnOptions` __<a name="spawnoptions">`SpawnOptions`</a>__
 
 ```js
 import spawn from 'spawncommand'
@@ -100,9 +98,11 @@ hello world
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="15"></a></p>
 
-### `fork(`<br/>&nbsp;&nbsp;`module: string,`<br/>&nbsp;&nbsp;`args: string[],`<br/>&nbsp;&nbsp;`options?: SpawnOptions,`<br/>`): ChildProcessWithPromise`
+### `fork(`<br/>&nbsp;&nbsp;`module: string,`<br/>&nbsp;&nbsp;`args: string[],`<br/>&nbsp;&nbsp;`options?: ForkOptions,`<br/>`): ChildProcessWithPromise`
 
 Forks a Node.js module and adds a `promise` property to the returned _ChildProcess_.
+
+
 
 ```js
 import { fork } from 'spawncommand'
