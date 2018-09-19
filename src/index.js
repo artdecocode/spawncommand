@@ -73,9 +73,6 @@ export function fork(mod, args = [], options) {
  * @typedef {import('child_process').ForkOptions} ForkOptions
  * @typedef {import('child_process').ChildProcess} ChildProcess
  *
- * @typedef {ChildProcess} ChildProcessWithPromise A child process with an extra `promise` property.
- * @prop {Promise.<PromiseResult>} promise A promise resolved when the process exits.
- *
  * @typedef {Object} PromiseResult
  * @prop {string} stdout The accumulated result of the `stdout` stream.
  * @prop {string} stderr The accumulated result of the `stderr` stream.

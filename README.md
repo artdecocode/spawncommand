@@ -37,7 +37,7 @@ import spawn, { fork } from 'spawncommand'
 
 The package's main type is _ChildProcessWithPromise_ which enriches the standard _ChildProcess_ with a `promise` property.
 
-`import('child_process').ChildProcess` __<a name="childprocess">`ChildProcess`</a>__: [An instance of EventEmitter that represents the spawned child process.](https://nodejs.org/api/child_process.html#child_process_class_childprocess)
+[`import('child_process').ChildProcess`](https://nodejs.org/api/child_process.html#child_process_class_childprocess) __<a name="childprocess">`ChildProcess`</a>__
 
 `ChildProcess` __<a name="childprocesswithpromise">`ChildProcessWithPromise`</a>__: A child process with an extra `promise` property.
 
