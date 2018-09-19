@@ -9,8 +9,9 @@
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec",
-    "build": "alamode src -o build",
-    "d": "alamode src/index.js -g",
+    "b": "alamode src -o build",
+    "build": "yarn-s d b doc",
+    "d": "doc src/index.js -g",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "example/spawncommand.js": "node example example/spawncommand",

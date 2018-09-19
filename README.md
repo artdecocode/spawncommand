@@ -49,9 +49,13 @@ __<a name="promiseresult">`PromiseResult`</a>__
 | ----------- | -------- | ---------------------------------------------- | ------- |
 | __stdout*__ | _string_ | The accumulated result of the `stdout` stream. | -       |
 | __stderr*__ | _string_ | The accumulated result of the `stderr` stream. | -       |
-| __stderr*__ | _number_ | The code with which the process exited.        | -       |
+| __code*__   | _number_ | The code with which the process exited.        | -       |
 
-`ChildProcess` __<a name="childprocesswithpromise">`ChildProcessWithPromise`</a>__: A child process with an extra `promise` property resolved on exit.
+`ChildProcess` __<a name="childprocesswithpromise">`ChildProcessWithPromise`</a>__: A child process with an extra `promise` property.
+
+|     Name     |           Type            |                Description                 | Default |
+| ------------ | ------------------------- | ------------------------------------------ | ------- |
+| __promise*__ | _Promise.<PromiseResult>_ | A promise resolved when the process exits. | -       |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
 
@@ -90,7 +94,6 @@ import spawnCommand from 'spawncommand'
   await promise
 })()
 ```
-
 ```
 hello world
 ```
@@ -101,8 +104,8 @@ hello world
 
 Forks a Node.js module and adds a `promise` property to the returned _ChildProcess_.
 
-```../src=>spawncommand
-import { fork } from '../src'
+```js
+import { fork } from 'spawncommand'
 
 (async () => {
   const { promise } = fork('example/index.js', ['example/spawn.js'], {

@@ -22,7 +22,6 @@ Spawns a command and returns a _ChildProcess_ instance with the `promise` proper
 The returned object is a `ChildProcess` and all of its properties can be accessed in the standard way.
 
 %EXAMPLE: example/pipe.js, ../src => spawncommand%
-
 %FORK example example/pipe.js%
 
 %~ width="15"%

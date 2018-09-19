@@ -9,11 +9,13 @@
     <prop string name="stderr">
       The accumulated result of the `stderr` stream.
     </prop>
-    <prop number name="stderr">
+    <prop number name="code">
       The code with which the process exited.
     </prop>
   </type>
-  <type name="ChildProcessWithPromise" type="ChildProcess" desc="A child process with an extra `promise` property resolved on exit.">
+  <type name="ChildProcessWithPromise" type="ChildProcess" desc="A child process with an extra `promise` property.">
     <prop name="promise" type="Promise.<PromiseResult>">
+      A promise resolved when the process exits.
+    </prop>
   </type>
 </types>

@@ -1,26 +1,39 @@
-import Catchment from 'catchment'
-import { spawn, fork as forkCp } from 'child_process'
+import { spawn, fork as forkCp, ChildProcess } from 'child_process'
+import { collect } from 'catchment'
 
-const pipe = (stream, catchment) => {
-  if (!stream) return catchment.end()
-  stream.pipe(catchment)
-}
-
-const getPromise = async (proc, { promise: stdoutPromise }, { promise: stderrPromise }) => {
-  const code = await new Promise((resolve, reject) => {
-    proc.on('error', reject)
-    proc.on('exit', (code) => {
-      resolve(code)
-    })
-  })
-  const [stdout, stderr] = await Promise.all([
-    stdoutPromise,
-    stderrPromise,
+/**
+ * @returns {PromiseResult}
+ */
+const getPromise = async (proc) => {
+  const [code, stdout, stderr] = await Promise.all([
+    new Promise((resolve, reject) => {
+      proc.on('error', reject)
+        .on('exit', (code) => {
+          resolve(code)
+        })
+    }),
+    proc.stdout ? collect(proc.stdout) : undefined,
+    proc.stderr ? collect(proc.stderr) : undefined,
   ])
   return {
     code,
     stdout,
     stderr,
+  }
+}
+
+class ChildProcessWithPromise extends ChildProcess {
+  constructor(p, promise) {
+    super()
+    this._promise = promise
+    Object.assign(this, p)
+    this.spawnCommand = p.spawnargs.join(' ')
+  }
+  /**
+   * @type {Promise.<PromiseResult>} The promise resolved when the process exits.
+   */
+  get promise() {
+    return this._promise
   }
 }
 
@@ -31,37 +44,37 @@ const getPromise = async (proc, { promise: stdoutPromise }, { promise: stderrPro
  * @param {SpawnOptions} [options] Options used to spawn.
  */
 export default function spawnCommand(command, args = [], options = {}) {
-  if (!command) throw new Error('Please specify a command to spawn')
+  if (!command) throw new Error('Please specify a command to spawn.')
   const proc = spawn(command, args, options)
-  const stdout = new Catchment()
-  const stderr = new Catchment()
-  pipe(proc.stdout, stdout)
-  pipe(proc.stderr, stderr)
 
-  const promise = getPromise(proc, stdout, stderr)
-  proc.promise = promise
-  proc.spawnCommand = proc.spawnargs.join(' ')
-  return proc
+  const promise = getPromise(proc)
+  const p = new ChildProcessWithPromise(proc, promise)
+  return p
 }
 
 /**
  * Fork a process and assign a `promise` property to it, resolved on exit.
  * @param {string} mod The module to run in the child.
  * @param {string[]} [args] List of string arguments.
- * @param {ForkOptions} [options]
+ * @param {ForkOptions} [options] Options to fork the process with.
  */
 export function fork(mod, args = [], options) {
   if (!mod) throw new Error('Please specify a module to fork')
   const proc = forkCp(mod, args, options)
-  const stdout = new Catchment()
-  const stderr = new Catchment()
-  pipe(proc.stdout, stdout)
-  pipe(proc.stderr, stderr)
 
-  const promise = getPromise(proc, stdout, stderr)
-  proc.promise = promise
-  proc.spawnCommand = proc.spawnargs.join(' ')
-  return proc
+  const promise = getPromise(proc)
+  const p = new ChildProcessWithPromise(proc, promise)
+  return p
 }
 
 /* documentary types/index.xml */
+/**
+ * @typedef {import('child_process').SpawnOptions} SpawnOptions
+ * @typedef {import('child_process').ForkOptions} ForkOptions
+ * @typedef {import('child_process').ChildProcess} ChildProcess
+ *
+ * @typedef {Object} PromiseResult
+ * @prop {string} stdout The accumulated result of the `stdout` stream.
+ * @prop {string} stderr The accumulated result of the `stderr` stream.
+ * @prop {number} code The code with which the process exited.
+ */
