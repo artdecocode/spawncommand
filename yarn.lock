@@ -117,9 +117,9 @@ difflib@~0.2.1:
   dependencies:
     heap ">= 0.2.0"
 
-documentary@1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.17.0.tgz#6c33ecb42cb24c2f5729cefde5fd67379421f56f"
+documentary@1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.18.0.tgz#4c4dc0b3b937b6066fe8d184050e6eac2352841e"
   dependencies:
     "@wrote/clone" "1.0.1"
     "@wrote/ensure-path" "1.0.3"

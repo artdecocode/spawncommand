@@ -42,7 +42,7 @@
   "homepage": "https://github.com/artdecocode/spawncommand#readme",
   "devDependencies": {
     "alamode": "1.5.0",
-    "documentary": "1.17.0",
+    "documentary": "1.18.0",
     "yarn-s": "1.1.0",
     "zoroaster": "3.4.1"
   },
