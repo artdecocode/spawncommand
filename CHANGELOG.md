@@ -1,3 +1,11 @@
+## 20 September 2018
+
+### 2.1.0
+
+- [feature] Correct JSDoc for the `ForkOptions` and `SpawnOptions`.
+- [doc] Compile with documentary.
+- [build] Build with [`alamode`](https://alamode.cc)
+
 ## 15 May 2018
 
 ### 2.0.0
