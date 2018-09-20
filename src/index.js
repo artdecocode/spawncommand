@@ -1,4 +1,4 @@
-import { spawn, fork as forkCp, ChildProcess } from 'child_process'
+import { spawn, fork as forkCp } from 'child_process'
 import { collect } from 'catchment'
 
 /**
@@ -22,21 +22,6 @@ const getPromise = async (proc) => {
   }
 }
 
-class ChildProcessWithPromise extends ChildProcess {
-  constructor(p, promise) {
-    super()
-    this._promise = promise
-    Object.assign(this, p)
-    this.spawnCommand = p.spawnargs.join(' ')
-  }
-  /**
-   * @type {Promise.<PromiseResult>} The promise resolved when the process exits.
-   */
-  get promise() {
-    return this._promise
-  }
-}
-
 /**
  * Spawns a new process using the `command` and returns an instance of a ChildProcess, extended to have a `promise` property which is resolved when the process exits. The resolved value is an object with `stdout`, `stderr` and `code` properties.
  * @param {string} command The command to run.
@@ -48,8 +33,9 @@ export default function spawnCommand(command, args = [], options = {}) {
   const proc = spawn(command, args, options)
 
   const promise = getPromise(proc)
-  const p = new ChildProcessWithPromise(proc, promise)
-  return p
+  proc.promise = promise
+  proc.spawnCommand = proc.spawnargs.join(' ')
+  return proc
 }
 
 /**
@@ -63,8 +49,9 @@ export function fork(mod, args = [], options) {
   const proc = forkCp(mod, args, options)
 
   const promise = getPromise(proc)
-  const p = new ChildProcessWithPromise(proc, promise)
-  return p
+  proc.promise = promise
+  proc.spawnCommand = proc.spawnargs.join(' ')
+  return proc
 }
 
 /* documentary types/index.xml */
@@ -77,4 +64,10 @@ export function fork(mod, args = [], options) {
  * @prop {string} stdout The accumulated result of the `stdout` stream.
  * @prop {string} stderr The accumulated result of the `stderr` stream.
  * @prop {number} code The code with which the process exited.
+ */
+
+/* documentary types/cp.xml */
+/**
+ * @typedef {ChildProcess} ChildProcessWithPromise A child process with an extra `promise` property.
+ * @prop {Promise.<PromiseResult>} promise A promise resolved when the process exits.
  */
