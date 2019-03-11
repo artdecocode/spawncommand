@@ -75,4 +75,3 @@ const getPromise = async (proc) => {
 
 module.exports = spawnCommand
 module.exports.fork = fork
-//# sourceMappingURL=index.js.map

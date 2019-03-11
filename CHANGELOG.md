@@ -1,3 +1,9 @@
+## 11 March 2019
+
+### 2.1.1
+
+- [package] Publish `module`.
+
 ## 20 September 2018
 
 ### 2.1.0

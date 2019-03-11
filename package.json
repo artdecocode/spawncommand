@@ -3,13 +3,15 @@
   "version": "2.1.0",
   "description": "Spawn or fork a child process with a promise property resolved on exit with stdout, stderr and code.",
   "main": "build",
+  "module": "src",
   "files": [
-    "build"
+    "build",
+    "src"
   ],
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec",
-    "b": "alamode src -o build",
+    "b": "alamode src -o build -s",
     "build": "yarn-s d b doc",
     "d": "doc src/index.js -g",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
@@ -41,12 +43,12 @@
   },
   "homepage": "https://github.com/artdecocode/spawncommand#readme",
   "devDependencies": {
-    "alamode": "1.5.0",
-    "documentary": "1.18.0",
+    "alamode": "1.8.4",
+    "documentary": "1.21.5",
     "yarn-s": "1.1.0",
-    "zoroaster": "3.4.1"
+    "zoroaster": "3.8.2"
   },
   "dependencies": {
-    "catchment": "3.1.1"
+    "catchment": "3.2.2"
   }
 }
