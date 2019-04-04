@@ -1,3 +1,9 @@
+## 4 April 2019
+
+### [2.1.2](git+https://github.com/artdecocode/spawncommand/compare/v2.1.1...v2.1.2)
+
+- [deps] Unfix dependencies, upgrade `catchment`.
+
 ## 11 March 2019
 
 ### 2.1.1
