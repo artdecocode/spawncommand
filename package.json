@@ -18,7 +18,8 @@
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "example/spawncommand.js": "node example example/spawncommand",
     "example/fork.js": "node example example/fork",
-    "example/pipe.js": "node example example/pipe"
+    "example/pipe.js": "node example example/pipe",
+    "e": "alanode"
   },
   "repository": {
     "type": "git",
@@ -43,12 +44,12 @@
   },
   "homepage": "https://github.com/artdecocode/spawncommand#readme",
   "devDependencies": {
-    "alamode": "1.8.4",
-    "documentary": "1.21.5",
+    "alamode": "^1.9.2",
+    "documentary": "^1.23.4",
     "yarn-s": "1.1.0",
-    "zoroaster": "3.8.2"
+    "zoroaster": "^3.11.4"
   },
   "dependencies": {
-    "catchment": "3.2.2"
+    "catchment": "^3.2.3"
   }
 }

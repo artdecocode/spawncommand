@@ -22,12 +22,12 @@ Spawns a command and returns a _ChildProcess_ instance with the `promise` proper
 
 %TYPEDEF types/index.xml SpawnOptions%
 
-%EXAMPLE: example/spawn.js, ../src => spawncommand%
-%FORK-json5 example example/spawn.js%
+%EXAMPLE: example/spawn, ../src => spawncommand%
+%FORK-json5 example/spawn%
 
 The returned object is a `ChildProcess` and all of its properties can be accessed in the standard way.
 
-%EXAMPLE: example/pipe.js, ../src => spawncommand%
-%FORK example example/pipe.js%
+%EXAMPLE: example/pipe, ../src => spawncommand%
+%FORK example/pipe%
 
 %~ width="15"%
