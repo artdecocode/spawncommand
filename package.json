@@ -1,6 +1,6 @@
 {
   "name": "spawncommand",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Spawn or fork a child process with a promise property resolved on exit with stdout, stderr and code.",
   "main": "build/index.js",
   "module": "src/index.js",
