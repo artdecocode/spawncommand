@@ -2,25 +2,29 @@
   "name": "spawncommand",
   "version": "2.1.2",
   "description": "Spawn or fork a child process with a promise property resolved on exit with stdout, stderr and code.",
-  "main": "build",
-  "module": "src",
-  "files": [
-    "build",
-    "src"
-  ],
+  "main": "build/index.js",
+  "module": "src/index.js",
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec",
     "b": "alamode src -o build -s",
     "build": "yarn-s d b doc",
-    "d": "doc src/index.js -g",
-    "doc": "NODE_DEBUG=doc doc documentary -o README.md",
+    "doc": "NODE_DEBUG=doc doc -o README.md",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "example/spawncommand.js": "node example example/spawncommand",
     "example/fork.js": "node example example/fork",
     "example/pipe.js": "node example example/pipe",
-    "e": "alanode"
+    "e": "alanode",
+    "d": "yarn-s d1 externs",
+    "d1": "typal src -c",
+    "externs": "typal externs.js -e"
   },
+  "files": [
+    "build",
+    "src",
+    "externs.js"
+  ],
+  "externs": "externs.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/artdecocode/spawncommand.git"
@@ -44,12 +48,12 @@
   },
   "homepage": "https://github.com/artdecocode/spawncommand#readme",
   "devDependencies": {
-    "alamode": "^1.9.2",
-    "documentary": "^1.23.4",
+    "alamode": "^2.0.0",
+    "documentary": "^1.26.0",
     "yarn-s": "1.1.0",
-    "zoroaster": "^3.11.4"
+    "zoroaster": "^3.13.0"
   },
   "dependencies": {
-    "catchment": "^3.2.3"
+    "catchment": "^3.3.0"
   }
 }

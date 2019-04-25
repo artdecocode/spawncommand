@@ -1,7 +1,10 @@
-<types>
-  <type name="ChildProcessWithPromise" type="ChildProcess" desc="A child process with an extra `promise` property.">
-    <prop name="promise" type="Promise.<PromiseResult>">
+<types namespace="_spawncommand">
+  <type constructor name="ChildProcessWithPromise" extends="child_process.ChildProcess" desc="A child process with an extra `promise` property.">
+    <prop name="promise" type="!Promise<!_spawncommand.PromiseResult>">
       A promise resolved when the process exits.
+    </prop>
+    <prop name="spawnCommand" type="string">
+      The spawn arguments joined by whitespace.
     </prop>
   </type>
 </types>

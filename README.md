@@ -5,7 +5,7 @@
 _SpawnCommand_ will run the `spawn` or `fork` methods from the `child_process` module, and add a `promise` property to the returned process instance. The promise will be resolved on process exit with an object consisting of `code`, `stdout` and `stderr` properties.
 
 ```
-yarn add -E spawncommand
+yarn add spawncommand
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -15,8 +15,8 @@ yarn add -E spawncommand
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
   * [Types](#types)
-    * [`ChildProcessWithPromise`](#type-childprocesswithpromise)
-    * [`PromiseResult`](#type-promiseresult)
+    * [`_spawncommand.ChildProcessWithPromise`](#type-_spawncommandchildprocesswithpromise)
+    * [`_spawncommand.PromiseResult`](#type-_spawncommandpromiseresult)
   * [`spawn(module: string, args: string[], options?: SpawnOptions): ChildProcessWithPromise`](#spawnmodule-stringargs-stringoptions-spawnoptions-childprocesswithpromise)
   * [`fork(module: string, args: string[], options?: ForkOptions): ChildProcessWithPromise`](#forkmodule-stringargs-stringoptions-forkoptions-childprocesswithpromise)
 - [Copyright](#copyright)
@@ -37,21 +37,22 @@ import spawn, { fork } from 'spawncommand'
 
 The package's main type is _ChildProcessWithPromise_ which enriches the standard _ChildProcess_ with a `promise` property.
 
-[`import('child_process').ChildProcess`](https://nodejs.org/api/child_process.html#child_process_class_childprocess) __<a name="type-childprocess">`ChildProcess`</a>__
+[`import('child_process').ChildProcess`](https://nodejs.org/api/child_process.html#child_process_class_childprocess) __<a name="type-child_processchildprocess">`child_process.ChildProcess`</a>__
 
-`ChildProcess` __<a name="type-childprocesswithpromise">`ChildProcessWithPromise`</a>__: A child process with an extra `promise` property.
+__<a name="type-_spawncommandchildprocesswithpromise">`_spawncommand.ChildProcessWithPromise`</a>__: A child process with an extra `promise` property.
 
-|     Name     |                          Type                          |                Description                 |
-| ------------ | ------------------------------------------------------ | ------------------------------------------ |
-| __promise*__ | _Promise.&lt;[PromiseResult](#type-promiseresult)&gt;_ | A promise resolved when the process exits. |
+|       Name        |                         Type                          |                Description                 |
+| ----------------- | ----------------------------------------------------- | ------------------------------------------ |
+| __promise*__      | <em>!Promise&lt;!_spawncommand.PromiseResult&gt;</em> | A promise resolved when the process exits. |
+| __spawnCommand*__ | <em>string</em>                                       | The spawn arguments joined by whitespace.  |
 
-__<a name="type-promiseresult">`PromiseResult`</a>__
+__<a name="type-_spawncommandpromiseresult">`_spawncommand.PromiseResult`</a>__
 
-|    Name     |   Type   |                  Description                   |
-| ----------- | -------- | ---------------------------------------------- |
-| __stdout*__ | _string_ | The accumulated result of the `stdout` stream. |
-| __stderr*__ | _string_ | The accumulated result of the `stderr` stream. |
-| __code*__   | _number_ | The code with which the process exited.        |
+|    Name     |      Type       |                  Description                   |
+| ----------- | --------------- | ---------------------------------------------- |
+| __stdout*__ | <em>string</em> | The accumulated result of the `stdout` stream. |
+| __stderr*__ | <em>string</em> | The accumulated result of the `stderr` stream. |
+| __code*__   | <em>number</em> | The code with which the process exited.        |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
 
@@ -59,7 +60,7 @@ __<a name="type-promiseresult">`PromiseResult`</a>__
 
 Spawns a command and returns a _ChildProcess_ instance with the `promise` property resolved on exit. The promise will be rejected if an error was encountered when trying to spawn the process.
 
-`import('child_process').SpawnOptions` __<a name="type-spawnoptions">`SpawnOptions`</a>__
+`import('child_process').SpawnOptions` __<a name="type-child_processspawnoptions">`child_process.SpawnOptions`</a>__
 
 ```js
 import spawn from 'spawncommand'
@@ -102,7 +103,7 @@ hello world
 
 Forks a Node.js module and adds a `promise` property to the returned _ChildProcess_.
 
-`import('child_process').ForkOptions` __<a name="type-forkoptions">`ForkOptions`</a>__
+`import('child_process').ForkOptions` __<a name="type-child_processforkoptions">`child_process.ForkOptions`</a>__
 
 ```js
 import { fork } from 'spawncommand'
@@ -130,9 +131,24 @@ The `pipe` option needs to be set in order to gather the output of the `stderr` 
 
 ## Copyright
 
-(c) [Art Deco][1] 2018
+<table>
+  <tr>
+    <th>
+      <a href="https://artd.eco">
+        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+      </a>
+    </th>
+    <th>© <a href="https://artd.eco">Art Deco</a>   2019</th>
+    <th>
+      <a href="https://www.technation.sucks" title="Tech Nation Visa">
+        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
+          alt="Tech Nation Visa" />
+      </a>
+    </th>
+    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
+  </tr>
+</table>
 
-[1]: https://artdeco.bz
 [2]: https://github.com/nodejs/node/pull/10866
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
