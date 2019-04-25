@@ -27,7 +27,7 @@
   "externs": "externs.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/artdecocode/spawncommand.git"
+    "url": "git://github.com/artdecocode/spawncommand.git"
   },
   "keywords": [
     "spawn",
